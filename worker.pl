@@ -15,9 +15,11 @@ use lib (
 );
 use Unruly;
 use WWW::Uncyclopedia;
+use Time::Out qw(timeout);
 
 $WWW::Uncyclopedia::BASE_URL = 'http://ansaikuropedia.org/';
-$WWW::Uncyclopedia::TIMEOUT = 10;
+$WWW::Uncyclopedia::TIMEOUT = 5;
+our $TIMEOUT = 5;
 
 my $bot_name = '物思い君';
 my @tags = qw/PUBLIC/;
@@ -51,7 +53,10 @@ $bot->run(sub {
                 infof('received "%s" (from:%s)', $message->{text}, $message->{nickname});
                 my ($word) = $message->{text} =~ /\Au (.+)\s/;
                 if($word) {
-                    my $text = WWW::Uncyclopedia->search($word);
+                    my $text; 
+                    timeout $TIMEOUT => sub { 
+                        $text = WWW::Uncyclopedia->search($word);
+                    };
                     
                     my $response = $text ? do {
                         my @part = split(/。/, $text);

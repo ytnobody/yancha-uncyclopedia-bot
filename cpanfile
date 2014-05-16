@@ -1,5 +1,6 @@
 requires 'Log::Minimal';
 requires 'AnyEvent';
+requires 'Time::Out';
 
 ### for Unruly
 requires 'JSON';

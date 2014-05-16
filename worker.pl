@@ -17,9 +17,9 @@ use Unruly;
 use WWW::Uncyclopedia;
 use Time::Out qw(timeout);
 
-$WWW::Uncyclopedia::BASE_URL = 'http://ansaikuropedia.org/';
-$WWW::Uncyclopedia::TIMEOUT = 5;
-our $TIMEOUT = 5;
+$WWW::Uncyclopedia::BASE_URL = 'http://xn--cckacd9c8a6ing0g5b.com/';
+$WWW::Uncyclopedia::TIMEOUT = 7;
+our $TIMEOUT = 7;
 
 my $bot_name = '物思い君';
 my @tags = qw/PUBLIC/;

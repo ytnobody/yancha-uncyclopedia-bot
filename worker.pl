@@ -51,7 +51,8 @@ $bot->run(sub {
                 
                 my $response = $text ? do {
                     my @part = split(/。/, $text);
-                    join("。", @part[0..3]);
+                    my $rtn = join("。", @part[0..3]);
+                    sprintf("%s\n\n%s", $rtn, WWW::Uncyclopedia->url($word));
                 } : 'なんすかそれ';
                 $bot->post($response, @tags);
             }

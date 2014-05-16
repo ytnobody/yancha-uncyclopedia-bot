@@ -49,14 +49,16 @@ $bot->run(sub {
             unless ($message->{nickname} eq $bot_name) {
                 infof('received "%s" (from:%s)', $message->{text}, $message->{nickname});
                 my ($word) = $message->{text} =~ /\Au (.+)\s/;
-                my $text = WWW::Uncyclopedia->search($word);
-                
-                my $response = $text ? do {
-                    my @part = split(/。/, $text);
-                    my $rtn = join("。", @part[0..3]);
-                    sprintf("%s\n\n%s", $rtn, WWW::Uncyclopedia->url($word));
-                } : 'なんすかそれ';
-                $bot->post($response, @tags);
+                if($word) {
+                    my $text = WWW::Uncyclopedia->search($word);
+                    
+                    my $response = $text ? do {
+                        my @part = split(/。/, $text);
+                        my $rtn = join("。", @part[0..3]);
+                        sprintf("%s\n\n%s", $rtn, WWW::Uncyclopedia->url($word));
+                    } : 'なんすかそれ';
+                    $bot->post($response, @tags);
+                }
             }
         }
     });

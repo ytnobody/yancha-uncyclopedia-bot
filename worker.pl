@@ -16,6 +16,8 @@ use lib (
 use Unruly;
 use WWW::Uncyclopedia;
 
+$WWW::Uncyclopedia::BASE_URL = 'http://ansaikuropedia.org/';
+
 my $bot_name = '物思い君';
 my @tags = qw/PUBLIC/;
 

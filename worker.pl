@@ -37,6 +37,12 @@ unless( $bot->login($bot_name) ) {
 
 my $cv = AnyEvent->condvar;
 
+sub trim_text {
+    my $text = shift;
+    my @part = split(/。/, $text);
+    join("。", @part[0..3]);
+}
+
 $bot->run(sub {
     my ($client, $socket) = @_;
 
@@ -57,13 +63,12 @@ $bot->run(sub {
                     timeout $TIMEOUT => sub { 
                         $text = WWW::Uncyclopedia->search($word);
                     };
-                    $text ||= WWW::Uncyclopedia->search('特別:おまかせ表示');
                     
-                    my $response = $text ? do {
-                        my @part = split(/。/, $text);
-                        my $rtn = join("。", @part[0..3]);
-                        sprintf("%s\n\n%s", $rtn, WWW::Uncyclopedia->url($word));
-                    } : 'なんすかそれ';
+                    my $response = $text ? 
+                        sprintf( "%s\n\n%s", trim_text($text), WWW::Uncyclopedia->url($word) ) :
+                        sprintf( "%sについてはよくわかりません。\n%s\n", $word, trim_text(WWW::Uncyclopedia->search('特別:おまかせ表示')) )
+                    ;
+
                     $bot->post($response, @tags);
                 }
             }

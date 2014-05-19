@@ -18,10 +18,10 @@ use WWW::Uncyclopedia;
 use Time::Out qw(timeout);
 
 $WWW::Uncyclopedia::BASE_URL = 'http://xn--cckacd9c8a6ing0g5b.com/';
-$WWW::Uncyclopedia::TIMEOUT = 7;
-our $TIMEOUT = 7;
+$WWW::Uncyclopedia::TIMEOUT = 4;
+our $TIMEOUT = 4;
 
-my $bot_name = '物思い君';
+my $bot_name = '物笑い君';
 my @tags = qw/PUBLIC/;
 
 my $bot = Unruly->new(
@@ -57,6 +57,7 @@ $bot->run(sub {
                     timeout $TIMEOUT => sub { 
                         $text = WWW::Uncyclopedia->search($word);
                     };
+                    $text ||= WWW::Uncyclopedia->search('特別:おまかせ表示');
                     
                     my $response = $text ? do {
                         my @part = split(/。/, $text);

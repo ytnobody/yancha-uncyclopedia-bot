@@ -66,7 +66,7 @@ $bot->run(sub {
                     
                     my $response = $text ? 
                         sprintf( "%s\n\n%s", trim_text($text), WWW::Uncyclopedia->url($word) ) :
-                        sprintf( "%sについてはよくわかりません。\n%s\n", $word, trim_text(WWW::Uncyclopedia->search('特別:おまかせ表示')) )
+                        sprintf( "%sについては不明だが、%s\n", $word, trim_text(WWW::Uncyclopedia->search('特別:おまかせ表示')) )
                     ;
 
                     $bot->post($response, @tags);

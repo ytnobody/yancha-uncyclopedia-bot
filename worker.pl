@@ -21,11 +21,11 @@ $WWW::Uncyclopedia::BASE_URL = 'http://xn--cckacd9c8a6ing0g5b.com/';
 $WWW::Uncyclopedia::TIMEOUT = 4;
 our $TIMEOUT = 4;
 
-my $bot_name = '物笑い君';
+my $bot_name = $ENV{BOT_NAME} || '物笑い君';
 my @tags = qw/PUBLIC/;
 
 my $bot = Unruly->new(
-    url  => 'http://yancha.hachiojipm.org',
+    url  => $ENV{YANCHA_URL} || 'http://yancha.hachiojipm.org',
     tags => {map {($_ => 1)} @tags},
     ping_intervals => 15,
 );

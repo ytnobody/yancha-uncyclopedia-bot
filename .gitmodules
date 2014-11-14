@@ -1,6 +1,6 @@
 [submodule "submodules/Unruly"]
 	path = submodules/Unruly
-	url = git://github.com/ytnobody/Unruly.git
+	url = https://github.com/ytnobody/Unruly.git
 [submodule "submodules/WWW-Uncyclopedia"]
 	path = submodules/WWW-Uncyclopedia
-	url = git@github.com:ytnobody/WWW-Uncyclopedia.git
+	url = https://github.com/ytnobody/WWW-Uncyclopedia.git
